@@ -142,7 +142,7 @@ ARG CUSTOM_BUILD_PKGS=" \
     "
 
 ARG PHP_EXT_LIST=" \
-    pdo_mysql \
+    pdo_mysql bcmath \
     mysqli mcrypt exif intl \
     xsl json soap dom zip \
     opcache"
