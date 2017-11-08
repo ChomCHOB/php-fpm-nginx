@@ -1,5 +1,5 @@
 # ref: https://hub.docker.com/r/library/php/
-FROM php:7.1.9-fpm-alpine
+FROM php:7.1.11-fpm-alpine
 
 LABEL maintainer="support@chomchob.com"
 
@@ -10,7 +10,7 @@ ENV php_conf /usr/local/etc/php-fpm.conf
 ENV fpm_conf /usr/local/etc/php-fpm.d/www.conf
 ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
 
-ENV NGINX_VERSION 1.13.5
+ENV NGINX_VERSION 1.13.6
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && CONFIG="\
@@ -191,12 +191,12 @@ RUN set -ex; \
       --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install gd && \
     docker-php-ext-install ${PHP_EXT_LIST} && \
-    
+    \
     # install imagick
     export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" && \
     pecl install imagick-3.4.3 && \
     docker-php-ext-enable imagick && \
-
+    \
     docker-php-source delete && \
     mkdir -p /etc/nginx && \
     mkdir -p /var/www/app && \
